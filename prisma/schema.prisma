@@ -1,0 +1,256 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== AUTH ====================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          Role      @default(EDITOR)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLogin     DateTime?
+  
+  // Relations
+  blogPosts     BlogPost[]
+  sessions      Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+// ==================== LEADS ====================
+
+model Lead {
+  id          String      @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  district    String
+  service     String
+  message     String?
+  status      LeadStatus  @default(NEW)
+  notes       String?
+  source      String      @default("teklif-al")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  CONVERTED
+  CLOSED
+}
+
+// ==================== APPOINTMENTS ====================
+
+model Appointment {
+  id              String            @id @default(cuid())
+  name            String
+  phone           String
+  address         String
+  district        String
+  service         String
+  preferredDate   DateTime
+  preferredTime   String?
+  notes           String?
+  status          AppointmentStatus @default(PENDING)
+  adminNotes      String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+// ==================== FAULT REPORTS ====================
+
+model FaultReport {
+  id          String            @id @default(cuid())
+  name        String
+  phone       String
+  service     String
+  description String
+  images      String[]
+  status      FaultReportStatus @default(PENDING)
+  adminNotes  String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+enum FaultReportStatus {
+  PENDING
+  INVESTIGATING
+  COMPLETED
+}
+
+// ==================== BLOG ====================
+
+model BlogPost {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  excerpt         String
+  content         String
+  coverImage      String?
+  tags            String[]
+  category        String
+  published       Boolean   @default(false)
+  publishDate     DateTime?
+  readingTime     Int       @default(5)
+  
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  
+  // Relations
+  authorId        String
+  author          User      @relation(fields: [authorId], references: [id])
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// ==================== PRODUCTS ====================
+
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  price            Float?
+  images           String[]
+  category         String
+  inStock          Boolean  @default(true)
+  featured         Boolean  @default(false)
+  
+  // SEO
+  metaTitle        String?
+  metaDescription  String?
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// ==================== REFERENCES ====================
+
+model Reference {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  location     String
+  projectType  String
+  serviceType  String
+  duration     String?
+  summary      String
+  benefits     String[]
+  beforeImages String[]
+  afterImages  String[]
+  published    Boolean  @default(false)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ==================== REVIEWS ====================
+
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  district  String
+  rating    Int      @default(5)
+  comment   String
+  published Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ==================== SEO CONTENT ====================
+
+model District {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  population    String?
+  uniqueContent String?
+  serviceNote   String?
+  active        Boolean  @default(true)
+  order         Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  shortName   String
+  description String
+  keywords    String[]
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== SITE SETTINGS ====================
+
+model SiteSettings {
+  id                     String   @id @default("main")
+  companyName            String   @default("Çelikler Teknik")
+  phone                  String   @default("0286 566 1055")
+  phoneSecondary         String?
+  whatsapp               String   @default("0532 473 9862")
+  email                  String   @default("info@celiklerteknik.com")
+  adminEmail             String   @default("admin@celiklerteknik.com")
+  workingHours           String   @default("Pazartesi - Cumartesi: 08:30 - 19:00")
+  workingHoursSunday     String   @default("Pazar: Kapalı")
+  addressGelibolu        String?
+  addressLapseki         String?
+  mapLinkGelibolu        String?
+  mapLinkLapseki         String?
+  
+  // Social
+  facebook               String?
+  instagram              String?
+  twitter                String?
+  linkedin               String?
+  
+  // SEO
+  siteTitleTemplate      String   @default("%s | Çelikler Teknik")
+  defaultMetaDescription String?
+  defaultOGImage         String?
+  
+  updatedAt              DateTime @updatedAt
+}
