@@ -1,17 +1,17 @@
 import Link from 'next/link'
-import { FaCheckCircle, FaPhone, FaSun, FaLeaf, FaMoneyBillWave, FaBolt } from 'react-icons/fa'
+import { FaCheckCircle, FaPhone, FaSun, FaLeaf, FaMoneyBillWave, FaShower, FaThermometerHalf, FaTools } from 'react-icons/fa'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Güneş Enerjisi Sistemleri Çanakkale | Solar Panel | Çelikler Yapı',
-  description: 'Çanakkale güneş enerjisi sistemleri kurulumu. Güneş paneli, solar kolektör, fotovoltaik sistemler. Elektrik faturanızı %80 azaltın. Ücretsiz keşif.',
-  keywords: 'güneş enerjisi çanakkale, solar panel, güneş paneli kurulumu, fotovoltaik sistem, güneş kolektörü',
+  title: 'Vakum Tüplü Güneş Enerjisi Çanakkale | Sıcak Su Sistemi | Çelikler Teknik',
+  description: 'Çanakkale vakum tüplü güneş enerjisi sistemi kurulumu. Güneş enerjisi ile ücretsiz sıcak su. %70 tasarruf, 2 yıl garanti. Ücretsiz keşif.',
+  keywords: 'vakum tüplü güneş enerjisi çanakkale, güneş enerjisi sıcak su, solar sıcak su sistemi, güneş kolektörü',
   alternates: {
     canonical: 'https://celiklerteknik.com/hizmetler/gunes-enerjisi',
   },
   openGraph: {
-    title: 'Güneş Enerjisi Sistemleri Çanakkale | Çelikler Teknik',
-    description: 'Güneş enerjisi ile elektrik faturanızı %80 azaltın. Profesyonel kurulum ve bakım.',
+    title: 'Vakum Tüplü Güneş Enerjisi Çanakkale | Çelikler Teknik',
+    description: 'Güneş enerjisi ile ücretsiz sıcak su. Vakum tüplü sistemlerle %70 tasarruf.',
     url: 'https://celiklerteknik.com/hizmetler/gunes-enerjisi',
   },
 }
@@ -22,9 +22,9 @@ export default function GunesEnerjisiPage() {
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">Güneş Enerjisi Sistemleri</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">Vakum Tüplü Güneş Enerjisi</h1>
           <p className="text-xl text-gray-200">
-            Temiz enerji ile tasarruf edin, geleceğe yatırım yapın
+            Güneşin gücüyle ücretsiz sıcak su - Yaz kış kesintisiz
           </p>
         </div>
       </section>
@@ -36,18 +36,22 @@ export default function GunesEnerjisiPage() {
             
             {/* Intro */}
             <h2 className="text-3xl font-bold text-primary mb-6 font-display">
-              Güneş Enerjisi Nedir ve Nasıl Çalışır?
+              Vakum Tüplü Güneş Enerjisi Sistemi Nedir?
             </h2>
             
             <p className="text-lg text-gray-700 mb-6">
-              Güneş enerjisi, güneş ışınlarının elektrik veya ısı enerjisine dönüştürülmesiyle elde edilen <strong>yenilenebilir ve temiz</strong> bir enerji kaynağıdır. 
-              Çanakkale, yılda ortalama 2.700 saat güneşlenme süresiyle Türkiye'nin en verimli güneş enerjisi bölgelerinden biridir.
+              Vakum tüplü güneş enerjisi sistemleri, güneş ışığını kullanarak <strong>sıcak su üreten</strong> sistemlerdir. 
+              Elektrik üretmezler, sadece banyo, mutfak ve genel kullanım için sıcak su sağlarlar. 
+              Çanakkale'nin güneşli ikliminde yaz aylarında sıcak su ihtiyacınızın <strong>%100'ünü</strong>, 
+              kış aylarında ise <strong>%50-60'ını</strong> karşılayabilirler.
             </p>
 
-            <p className="text-lg text-gray-700 mb-6">
-              Çelikler Yapı olarak hem <strong>fotovoltaik (elektrik üreten)</strong> hem de <strong>termal (sıcak su üreten)</strong> güneş enerjisi sistemlerinin 
-              kurulumunu, bakımını ve servisini yapıyoruz. Eviniz veya işyeriniz için en uygun sistemi birlikte belirleyelim.
-            </p>
+            <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-8 rounded-r-lg">
+              <p className="text-orange-800">
+                <strong>💡 Önemli Not:</strong> Vakum tüplü sistemler elektrik üretmez, sadece sıcak su üretir. 
+                Elektrik üretimi için fotovoltaik (solar panel) sistemler gereklidir.
+              </p>
+            </div>
 
             {/* Avantajlar */}
             <div className="grid md:grid-cols-2 gap-6 my-10">
@@ -55,9 +59,21 @@ export default function GunesEnerjisiPage() {
                 <div className="flex items-start gap-4">
                   <FaMoneyBillWave className="text-yellow-600 text-2xl flex-shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-primary mb-2">%80 Tasarruf</h4>
+                    <h4 className="font-bold text-primary mb-2">%70 Tasarruf</h4>
                     <p className="text-gray-600">
-                      Elektrik faturanızı %80'e varan oranda azaltın. Yatırımınız 5-7 yılda kendini amorti eder.
+                      Sıcak su için harcadığınız doğalgaz veya elektrik faturasını %70'e kadar azaltın.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card border-l-4 border-blue-500 bg-blue-50">
+                <div className="flex items-start gap-4">
+                  <FaShower className="text-blue-600 text-2xl flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="font-bold text-primary mb-2">Bol Sıcak Su</h4>
+                    <p className="text-gray-600">
+                      4 kişilik aile için günde 150-200 litre sıcak su. Yaz aylarında sınırsız sıcak su keyfi.
                     </p>
                   </div>
                 </div>
@@ -69,7 +85,7 @@ export default function GunesEnerjisiPage() {
                   <div>
                     <h4 className="font-bold text-primary mb-2">Çevre Dostu</h4>
                     <p className="text-gray-600">
-                      Sıfır karbon emisyonu. Doğaya zarar vermeden enerji üretin.
+                      Sıfır karbon emisyonu. Doğalgaz veya elektrik kullanmadan temiz enerji.
                     </p>
                   </div>
                 </div>
@@ -79,102 +95,95 @@ export default function GunesEnerjisiPage() {
                 <div className="flex items-start gap-4">
                   <FaSun className="text-orange-600 text-2xl flex-shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-primary mb-2">25 Yıl Ömür</h4>
+                    <h4 className="font-bold text-primary mb-2">Kışın da Çalışır</h4>
                     <p className="text-gray-600">
-                      Güneş panelleri 25+ yıl verimli çalışır. Düşük bakım maliyeti.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="card border-l-4 border-blue-500 bg-blue-50">
-                <div className="flex items-start gap-4">
-                  <FaBolt className="text-blue-600 text-2xl flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-primary mb-2">Devlet Desteği</h4>
-                    <p className="text-gray-600">
-                      Yenilenebilir enerji teşvikleri ve vergi avantajlarından yararlanın.
+                      Vakum tüpler bulutlu havalarda ve kışın da verimli çalışır. -30°C'ye kadar dayanıklı.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Sistem Türleri */}
+            {/* Nasıl Çalışır */}
             <h3 className="text-2xl font-bold text-primary mb-6 font-display mt-10">
-              Güneş Enerjisi Sistem Türleri
+              Vakum Tüplü Sistem Nasıl Çalışır?
             </h3>
 
-            <div className="space-y-6 mb-10">
-              <div className="card">
-                <h4 className="font-bold text-primary mb-3 text-xl">🔌 Fotovoltaik (PV) Sistemler - Elektrik Üretimi</h4>
-                <p className="text-gray-600 mb-4">
-                  Güneş panelleri ile elektrik üretir. Şebekeye bağlı (on-grid) veya bağımsız (off-grid) olarak kurulabilir.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>On-Grid:</strong> Fazla elektriği şebekeye satın, faturanızı sıfırlayın</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>Off-Grid:</strong> Şebekeden bağımsız, akülü sistem</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>Hibrit:</strong> Hem şebeke hem akü destekli</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="card">
-                <h4 className="font-bold text-primary mb-3 text-xl">🌡️ Termal Sistemler - Sıcak Su Üretimi</h4>
-                <p className="text-gray-600 mb-4">
-                  Güneş kolektörleri ile sıcak su üretir. Ev, otel, yurt gibi sıcak su ihtiyacı yüksek yerler için idealdir.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>Düz Kolektör:</strong> Ekonomik, konut kullanımı için</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>Vakum Tüplü:</strong> Yüksek verim, soğuk iklimlerde etkili</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700"><strong>Isı Pompası Entegreli:</strong> Maksimum verim</span>
-                  </li>
-                </ul>
-              </div>
+            <div className="bg-gray-50 p-6 rounded-xl mb-8">
+              <ol className="space-y-4">
+                <li className="flex items-start gap-4">
+                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</span>
+                  <div>
+                    <strong className="text-primary">Güneş Işığı Emilimi:</strong>
+                    <p className="text-gray-600">Vakum tüplerin içindeki özel kaplama güneş ışığını emer ve ısıya dönüştürür.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</span>
+                  <div>
+                    <strong className="text-primary">Isı Transferi:</strong>
+                    <p className="text-gray-600">Tüplerdeki ısı, bakır borular aracılığıyla depodaki suya aktarılır.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</span>
+                  <div>
+                    <strong className="text-primary">Sıcak Su Depolama:</strong>
+                    <p className="text-gray-600">Isınan su, izolasyonlu depoda 24-48 saat sıcak kalır.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</span>
+                  <div>
+                    <strong className="text-primary">Kullanım:</strong>
+                    <p className="text-gray-600">Musluk açıldığında sıcak su doğrudan kullanıma hazır.</p>
+                  </div>
+                </li>
+              </ol>
             </div>
 
-            {/* Kurulum Süreci */}
-            <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-10">
-              Güneş Enerjisi Kurulum Süreci
+            {/* Kapasite Tablosu */}
+            <h3 className="text-2xl font-bold text-primary mb-6 font-display mt-10">
+              Hangi Sistem Size Uygun?
             </h3>
-            
-            <div className="grid md:grid-cols-4 gap-4 mb-10">
-              <div className="text-center p-4">
-                <div className="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">1</div>
-                <h4 className="font-bold text-primary mb-2">Keşif</h4>
-                <p className="text-sm text-gray-600">Çatı analizi ve enerji ihtiyacı hesaplama</p>
-              </div>
-              <div className="text-center p-4">
-                <div className="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">2</div>
-                <h4 className="font-bold text-primary mb-2">Proje</h4>
-                <p className="text-sm text-gray-600">Sistem tasarımı ve resmi başvurular</p>
-              </div>
-              <div className="text-center p-4">
-                <div className="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">3</div>
-                <h4 className="font-bold text-primary mb-2">Kurulum</h4>
-                <p className="text-sm text-gray-600">Panel montajı ve elektrik bağlantısı</p>
-              </div>
-              <div className="text-center p-4">
-                <div className="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">4</div>
-                <h4 className="font-bold text-primary mb-2">Devreye Alma</h4>
-                <p className="text-sm text-gray-600">Test, onay ve şebeke bağlantısı</p>
-              </div>
+
+            <div className="overflow-x-auto mb-8">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-primary text-white">
+                    <th className="p-3 text-left">Aile Büyüklüğü</th>
+                    <th className="p-3 text-left">Tüp Sayısı</th>
+                    <th className="p-3 text-left">Depo Kapasitesi</th>
+                    <th className="p-3 text-left">Günlük Sıcak Su</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-3">2 Kişi</td>
+                    <td className="p-3">12-15 Tüp</td>
+                    <td className="p-3">120-150 Lt</td>
+                    <td className="p-3">~100 Lt</td>
+                  </tr>
+                  <tr className="border-b bg-gray-50">
+                    <td className="p-3">3-4 Kişi</td>
+                    <td className="p-3">20-24 Tüp</td>
+                    <td className="p-3">200-240 Lt</td>
+                    <td className="p-3">~180 Lt</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">5-6 Kişi</td>
+                    <td className="p-3">30 Tüp</td>
+                    <td className="p-3">300 Lt</td>
+                    <td className="p-3">~250 Lt</td>
+                  </tr>
+                  <tr className="border-b bg-gray-50">
+                    <td className="p-3">Otel / Yurt</td>
+                    <td className="p-3">Özel Proje</td>
+                    <td className="p-3">500+ Lt</td>
+                    <td className="p-3">İhtiyaca Göre</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             {/* Hizmetlerimiz */}
@@ -185,19 +194,7 @@ export default function GunesEnerjisiPage() {
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-3">
                 <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
-                <span className="text-gray-700">Konut tipi güneş paneli kurulumu (3-10 kW)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
-                <span className="text-gray-700">Ticari ve endüstriyel GES projeleri</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
-                <span className="text-gray-700">Güneş kolektörü ile sıcak su sistemleri</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
-                <span className="text-gray-700">Akü ve enerji depolama sistemleri</span>
+                <span className="text-gray-700">Vakum tüplü güneş enerjisi sistemi kurulumu</span>
               </li>
               <li className="flex items-start gap-3">
                 <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
@@ -205,9 +202,30 @@ export default function GunesEnerjisiPage() {
               </li>
               <li className="flex items-start gap-3">
                 <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
-                <span className="text-gray-700">Lisanssız elektrik üretimi başvuruları</span>
+                <span className="text-gray-700">Kırık/patlak tüp değişimi</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
+                <span className="text-gray-700">Depo ve bağlantı elemanları yenileme</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
+                <span className="text-gray-700">Kombi entegrasyonu (kış desteği için)</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
+                <span className="text-gray-700">Otel, yurt, fabrika için büyük sistemler</span>
               </li>
             </ul>
+
+            {/* Markalar */}
+            <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-10">
+              Çalıştığımız Markalar
+            </h3>
+            <p className="text-gray-700 mb-8">
+              Baymak, Ezinç, Solimpeks, Eraslan, Demirdöküm ve diğer yerli üreticilerin kaliteli vakum tüplü sistemlerini 
+              kuruyoruz. Tüm ürünler <strong>TSE belgeli</strong> ve <strong>2 yıl garantili</strong>dir.
+            </p>
 
             {/* SSS */}
             <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-10">
@@ -216,31 +234,31 @@ export default function GunesEnerjisiPage() {
             
             <div className="space-y-4 mb-8">
               <div className="card">
-                <h4 className="font-bold text-primary mb-2">Güneş paneli kaç yılda kendini amorti eder?</h4>
+                <h4 className="font-bold text-primary mb-2">Vakum tüplü sistem elektrik üretir mi?</h4>
                 <p className="text-gray-600">
-                  Ortalama 5-7 yılda yatırım geri dönüşü sağlar. Elektrik fiyatları arttıkça bu süre kısalır. 
-                  Paneller 25+ yıl çalıştığı için uzun vadede büyük tasarruf sağlar.
+                  Hayır, vakum tüplü sistemler sadece sıcak su üretir. Elektrik üretimi için fotovoltaik (solar panel) 
+                  sistemler gereklidir. Biz şu an sadece sıcak su sistemleri kuruyoruz.
                 </p>
               </div>
               <div className="card">
-                <h4 className="font-bold text-primary mb-2">Bulutlu havalarda elektrik üretir mi?</h4>
+                <h4 className="font-bold text-primary mb-2">Kışın sıcak su çıkar mı?</h4>
                 <p className="text-gray-600">
-                  Evet, bulutlu havalarda da üretim devam eder ancak verim %20-30 düşer. 
-                  Yıllık ortalama hesaplamalarda bu durum zaten dikkate alınır.
+                  Evet, vakum tüpler kışın da çalışır. Bulutlu günlerde verim düşse de yine sıcak su üretir. 
+                  Çok soğuk günler için kombi desteği entegre edilebilir.
                 </p>
               </div>
               <div className="card">
-                <h4 className="font-bold text-primary mb-2">Çatım güneş paneline uygun mu?</h4>
+                <h4 className="font-bold text-primary mb-2">Bakım gerektirir mi?</h4>
                 <p className="text-gray-600">
-                  Güneye bakan, gölge almayan çatılar idealdir. Düz çatılara da özel konstrüksiyonla kurulum yapılabilir. 
-                  Ücretsiz keşif ile çatınızı değerlendirelim.
+                  Minimum bakım yeterlidir. Yılda 1-2 kez tüplerin temizlenmesi ve genel kontrol önerilir. 
+                  Hareketli parça olmadığı için arıza riski çok düşüktür.
                 </p>
               </div>
               <div className="card">
-                <h4 className="font-bold text-primary mb-2">Fazla elektriği satabilir miyim?</h4>
+                <h4 className="font-bold text-primary mb-2">Kaç yılda kendini amorti eder?</h4>
                 <p className="text-gray-600">
-                  Evet, on-grid sistemlerde fazla elektrik şebekeye verilir ve faturanızdan düşülür. 
-                  Yıllık bazda net sıfır fatura mümkündür.
+                  Ortalama 2-3 yılda yatırım geri dönüşü sağlar. Sistem 15-20 yıl sorunsuz çalıştığı için 
+                  uzun vadede büyük tasarruf sağlar.
                 </p>
               </div>
             </div>
@@ -248,9 +266,9 @@ export default function GunesEnerjisiPage() {
             {/* CTA */}
             <div className="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl text-center">
               <h3 className="text-2xl font-bold mb-4 font-display">
-                Ücretsiz Enerji Analizi ve Teklif
+                Ücretsiz Keşif ve Fiyat Teklifi
               </h3>
-              <p className="mb-6">Eviniz için ne kadar tasarruf edebileceğinizi hesaplayalım</p>
+              <p className="mb-6">Evinize en uygun sistemi birlikte belirleyelim</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/teklif-al" className="btn-primary bg-white text-primary hover:bg-gray-100">
                   Ücretsiz Keşif

@@ -70,6 +70,12 @@ async function generateSitemapXml() {
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/sss</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>`
 
   // Hizmet sayfaları (DB'den)
