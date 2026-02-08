@@ -16,7 +16,11 @@ export async function POST(request: NextRequest) {
     const validation = faultCreateSchema.safeParse(body)
 
     if (!validation.success) {
-      return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 })
+      console.error('Fault validation error:', validation.error.errors)
+      return NextResponse.json({ 
+        error: 'Geçersiz veri', 
+        details: validation.error.errors 
+      }, { status: 400 })
     }
 
     const data = sanitizeObject(validation.data)

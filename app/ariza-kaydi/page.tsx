@@ -10,6 +10,10 @@ export default function ArizaKaydiPage() {
     description: '',
   })
 
+  const [loading, setLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
   const services = [
     'Kombi Arızası',
     'Doğalgaz Kaçağı',
@@ -19,10 +23,39 @@ export default function ArizaKaydiPage() {
     'Diğer',
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    alert('Arıza kaydınız alındı! En kısa sürede size dönüş yapacağız.')
-    setFormData({ name: '', phone: '', service: '', description: '' })
+    setLoading(true)
+    setError('')
+
+    try {
+      const res = await fetch('/api/faults', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          description: formData.description,
+          images: [],
+        })
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Gönderim başarısız')
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', phone: '', service: '', description: '' })
+      
+      // 5 saniye sonra mesajı kapat
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (err: any) {
+      setError(err.message || 'Bir hata oluştu. Lütfen tekrar deneyin.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -40,6 +73,22 @@ export default function ArizaKaydiPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <div className="card">
+              {submitted && (
+                <div className="bg-green-50 border-l-4 border-green-400 p-6 mb-6 rounded-lg">
+                  <h3 className="text-green-800 font-bold text-lg mb-2">Teşekkürler!</h3>
+                  <p className="text-green-700">
+                    Arıza kaydınız başarıyla oluşturuldu. En kısa sürede size dönüş yapacağız.
+                  </p>
+                </div>
+              )}
+
+              {error && (
+                <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-6 rounded-lg">
+                  <h3 className="text-red-800 font-bold text-lg mb-2">Hata!</h3>
+                  <p className="text-red-700">{error}</p>
+                </div>
+              )}
+
               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
                 <p className="text-yellow-700">
                   <strong>Not:</strong> Bu form sadece daha önce hizmet aldığınız sistemlerin arızaları için kullanılmalıdır.
@@ -124,8 +173,8 @@ export default function ArizaKaydiPage() {
                   </p>
                 </div>
 
-                <button type="submit" className="btn-primary w-full">
-                  Arıza Kaydı Oluştur
+                <button type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-50">
+                  {loading ? 'Gönderiliyor...' : 'Arıza Kaydı Oluştur'}
                 </button>
               </form>
 

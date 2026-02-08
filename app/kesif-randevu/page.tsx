@@ -7,6 +7,7 @@ export default function KesifRandevuPage() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    address: '',
     district: '',
     service: '',
     date: '',
@@ -15,6 +16,8 @@ export default function KesifRandevuPage() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const districts = [
     'Merkez', 'Ayvacık', 'Bayramiç', 'Biga', 'Bozcaada', 'Çan', 'Eceabat',
@@ -42,29 +45,49 @@ export default function KesifRandevuPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    // Burada form verisi backend'e gönderilecek
-    console.log('Keşif Randevu:', formData)
-    
-    // WhatsApp mesajı oluştur
-    const message = `Keşif Randevu Talebi\n\nAd Soyad: ${formData.name}\nTelefon: ${formData.phone}\nİlçe: ${formData.district}\nHizmet: ${formData.service}\nTarih: ${formData.date}\nSaat: ${formData.time}\nAçıklama: ${formData.description}`
-    
-    // Admin'e mail gönderimi simülasyonu
-    alert('Keşif randevu talebiniz alındı! En kısa sürede size dönüş yapacağız.')
-    
-    setSubmitted(true)
-    setFormData({
-      name: '',
-      phone: '',
-      district: '',
-      service: '',
-      date: '',
-      time: '',
-      description: '',
-    })
+    setLoading(true)
+    setError('')
 
-    // 3 saniye sonra teşekkür mesajını kapat
-    setTimeout(() => setSubmitted(false), 3000)
+    try {
+      const res = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          address: formData.address,
+          district: formData.district,
+          service: formData.service,
+          preferredDate: formData.date,
+          preferredTime: formData.time,
+          notes: formData.description,
+        })
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Gönderim başarısız')
+      }
+
+      setSubmitted(true)
+      setFormData({
+        name: '',
+        phone: '',
+        address: '',
+        district: '',
+        service: '',
+        date: '',
+        time: '',
+        description: '',
+      })
+
+      // 5 saniye sonra teşekkür mesajını kapat
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (err: any) {
+      setError(err.message || 'Bir hata oluştu. Lütfen tekrar deneyin.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -89,6 +112,13 @@ export default function KesifRandevuPage() {
                 <p className="text-green-700">
                   Keşif randevu talebiniz başarıyla alındı. En kısa sürede size dönüş yapacağız.
                 </p>
+              </div>
+            )}
+
+            {error && (
+              <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-6 rounded-lg">
+                <h3 className="text-red-800 font-bold text-lg mb-2">Hata!</h3>
+                <p className="text-red-700">{error}</p>
               </div>
             )}
 
@@ -128,6 +158,20 @@ export default function KesifRandevuPage() {
                       placeholder="0555 123 45 67"
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Adres *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Mahalle, sokak, bina no, daire no"
+                  />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
@@ -220,8 +264,8 @@ export default function KesifRandevuPage() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary w-full text-lg">
-                  Randevu Talebi Gönder
+                <button type="submit" disabled={loading} className="btn-primary w-full text-lg disabled:opacity-50">
+                  {loading ? 'Gönderiliyor...' : 'Randevu Talebi Gönder'}
                 </button>
               </form>
 
