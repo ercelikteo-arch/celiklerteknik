@@ -13,10 +13,12 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
+    console.log('Lead API received:', JSON.stringify(body))
+    
     const validation = leadCreateSchema.safeParse(body)
 
     if (!validation.success) {
-      console.error('Lead validation error:', validation.error.errors)
+      console.error('Lead validation error:', JSON.stringify(validation.error.errors))
       return NextResponse.json({ 
         error: 'Geçersiz veri', 
         details: validation.error.errors 
@@ -24,6 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = sanitizeObject(validation.data)
+    console.log('Lead data after sanitize:', JSON.stringify(data))
 
     const lead = await prisma.lead.create({
       data: {
@@ -36,6 +39,8 @@ export async function POST(request: NextRequest) {
         source: 'teklif-al'
       }
     })
+
+    console.log('Lead created successfully:', lead.id)
 
     // Email bildirimi gönder (hata olsa bile form kaydını bozma)
     notifyNewLead({
