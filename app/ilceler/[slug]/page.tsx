@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaPhone, FaCheckCircle } from 'react-icons/fa'
 import { districts } from '@/data/districts'
+import DistrictCTA from '@/components/DistrictCTA'
 
 export async function generateStaticParams() {
   return districts.map((district) => ({
@@ -118,27 +119,13 @@ export default function DistrictPage({ params }: { params: { slug: string } }) {
                   <FaCheckCircle className="text-secondary mt-1 flex-shrink-0" size={20} />
                   <div>
                     <h3 className="font-bold text-primary mb-2">Acil Servis</h3>
-                    <p className="text-gray-600 text-sm">7/24 acil arıza müdahale hizmeti</p>
+                    <p className="text-gray-600 text-sm">Mesai dışı acil durumlar için öncelikli destek</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-primary to-secondary text-white p-8 rounded-2xl text-center">
-              <h3 className="text-2xl font-bold mb-4 font-display">
-                {district.name}'de Hizmetinizdeyiz
-              </h3>
-              <p className="mb-6">Ücretsiz keşif ve teklif için hemen arayın</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/teklif-al" className="btn-primary bg-white text-primary hover:bg-gray-100">
-                  Teklif Al
-                </Link>
-                <a href="tel:+902862170000" className="btn-secondary flex items-center justify-center gap-2">
-                  <FaPhone />
-                  <span>0286 217 00 00</span>
-                </a>
-              </div>
-            </div>
+            <DistrictCTA districtName={district.name} />
           </div>
         </div>
       </section>

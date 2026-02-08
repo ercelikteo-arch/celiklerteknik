@@ -5,6 +5,7 @@ import { FaCalendar, FaClock, FaArrowLeft, FaTag } from 'react-icons/fa'
 import Breadcrumb from '@/components/Breadcrumb'
 import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
+import BlogCTA from '@/components/BlogCTA'
 
 export const revalidate = 3600 // ISR: 1 saat
 export const dynamic = 'force-dynamic' // Build sırasında DB'ye bağlanma
@@ -178,6 +179,9 @@ export default async function BlogPostPage({ params }: Props) {
               className="prose prose-lg max-w-none mb-8"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
+
+            {/* Blog CTA */}
+            <BlogCTA topic={post.category} />
 
             {/* Tags */}
             {post.tags.length > 0 && (

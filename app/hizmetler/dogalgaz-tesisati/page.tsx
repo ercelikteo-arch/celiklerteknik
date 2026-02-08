@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone } from 'react-icons/fa'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import PricingInfoBox from '@/components/PricingInfoBox'
 
 export const metadata = {
   title: 'Doğalgaz Tesisatı Çanakkale | Proje, Kurulum, Onay | Çelikler Teknik',
@@ -130,6 +131,18 @@ export default function DogalgazTesisatiPage() {
             <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-8">
               Sık Sorulan Sorular
             </h3>
+
+            <PricingInfoBox 
+              service="Doğalgaz Tesisatı"
+              factors={[
+                'Daire / bina metrekaresi',
+                'Kat sayısı',
+                'Mevcut tesisat durumu',
+                'Kullanılacak malzeme kalitesi',
+                'Kombi/şofben bağlantı sayısı',
+                'Proje ve onay işlemleri'
+              ]}
+            />
             
             <div className="space-y-4 mb-8">
               <div className="card">

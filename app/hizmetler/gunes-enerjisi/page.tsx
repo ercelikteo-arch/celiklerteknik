@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaSun, FaLeaf, FaMoneyBillWave, FaShower, FaThermometerHalf, FaTools } from 'react-icons/fa'
 import { Metadata } from 'next'
+import PricingInfoBox from '@/components/PricingInfoBox'
 
 export const metadata: Metadata = {
   title: 'Vakum Tüplü Güneş Enerjisi Çanakkale | Sıcak Su Sistemi | Çelikler Teknik',
@@ -231,6 +232,18 @@ export default function GunesEnerjisiPage() {
             <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-10">
               Sık Sorulan Sorular
             </h3>
+
+            <PricingInfoBox 
+              service="Güneş Enerjisi Sistemi"
+              factors={[
+                'Aile büyüklüğü / kişi sayısı',
+                'Günlük sıcak su ihtiyacı',
+                'Çatı/teras durumu ve yönü',
+                'Sistem kapasitesi (tüp sayısı)',
+                'Marka ve kalite tercihi',
+                'Kombi entegrasyonu gereksinimi'
+              ]}
+            />
             
             <div className="space-y-4 mb-8">
               <div className="card">

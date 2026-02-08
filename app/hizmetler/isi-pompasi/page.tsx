@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone } from 'react-icons/fa'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import PricingInfoBox from '@/components/PricingInfoBox'
 
 export const metadata = {
   title: 'Isı Pompası Çanakkale | Kurulum, Montaj, Servis | Çelikler Teknik',
@@ -153,6 +154,18 @@ export default function IsiPompasiPage() {
             <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-8">
               Sık Sorulan Sorular
             </h3>
+
+            <PricingInfoBox 
+              service="Isı Pompası"
+              factors={[
+                'Evin metrekaresi',
+                'Yalıtım durumu',
+                'Mevcut ısıtma sistemi',
+                'İstenen marka/model',
+                'Yerden ısıtma / petek tercihi',
+                'Kat sayısı ve oda adedi'
+              ]}
+            />
             
             <div className="space-y-4 mb-8">
               <div className="card">

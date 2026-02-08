@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaHome, FaThermometerHalf, FaLeaf, FaChild } from 'react-icons/fa'
 import { Metadata } from 'next'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import PricingInfoBox from '@/components/PricingInfoBox'
 
 export const metadata: Metadata = {
   title: 'Yerden Isıtma Sistemleri Çanakkale | Çelikler Yapı',
@@ -235,6 +236,18 @@ export default function YerdenIsitmaPage() {
             <h3 className="text-2xl font-bold text-primary mb-4 font-display mt-10">
               Sık Sorulan Sorular
             </h3>
+
+            <PricingInfoBox 
+              service="Yerden Isıtma"
+              factors={[
+                'Toplam metrekare',
+                'Yeni inşaat mı tadilat mı',
+                'Sulu sistem mi elektrikli mi',
+                'Zemin kaplama türü',
+                'Kat sayısı',
+                'Isı kaynağı (kombi/ısı pompası)'
+              ]}
+            />
             
             <div className="space-y-4 mb-8">
               <div className="card">

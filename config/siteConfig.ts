@@ -37,7 +37,7 @@ export const siteConfig = {
   workingHours: {
     weekdays: 'Pazartesi - Cumartesi: 08:30 - 19:00',
     sunday: 'Pazar: Kapalı',
-    emergency: 'Acil durumlar için 7/24 hizmet',
+    emergency: 'Mesai dışı acil durumlar için öncelikli destek',
     detailed: {
       weekdays: {
         days: 'Pazartesi - Cumartesi',
