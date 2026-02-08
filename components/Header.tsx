@@ -16,39 +16,32 @@ const Header = () => {
     { name: 'Referanslar', href: '/referanslar' },
     { name: 'Blog', href: '/blog' },
     { name: 'Yorumlar', href: '/yorumlar' },
-    { name: 'Teklif Al', href: '/teklif-al' },
+    { name: 'Garanti', href: '/garanti-ve-servis-politikasi' },
     { name: 'İletişim', href: '/iletisim' },
   ]
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-4 py-3">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center flex-shrink-0">
-            <Image
-              src="/images/logo.png"
-              alt={siteConfig.companyName}
-              width={140}
-              height={45}
-              className="h-10 w-auto"
-              priority
-            />
+            <span className="text-xl font-bold text-primary">{siteConfig.companyName}</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center justify-end flex-1 space-x-5">
+          <div className="hidden lg:flex items-center space-x-5">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+                className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium text-sm"
               >
                 {item.name}
               </Link>
             ))}
             <a
               href={`tel:${siteConfig.contact.phone.formatted.primary}`}
-              className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-all duration-300"
+              className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-all duration-300 text-sm"
             >
               <FaPhone />
               <span>Hemen Ara</span>
@@ -58,7 +51,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-primary text-2xl ml-auto"
+            className="lg:hidden text-primary text-2xl"
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
