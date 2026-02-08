@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: 'Çelikler Teknik - Çanakkale Doğalgaz, Kombi, Isı Pompası Uzmanı',
     template: '%s | Çelikler Teknik'
   },
-  description: 'Çanakkale genelinde doğalgaz tesisatı, kombi montajı, ısı pompası sistemleri, güneş enerji ve tesisat hizmetleri. 10+ yıllık tecrübe, garantili işçilik. 7/24 acil servis.',
+  description: 'Çanakkale genelinde doğalgaz tesisatı, kombi montajı, ısı pompası sistemleri, güneş enerji ve tesisat hizmetleri. 20+ yıllık tecrübe, garantili işçilik. 7/24 acil servis.',
   keywords: ['çanakkale doğalgaz', 'çanakkale kombi', 'ısı pompası çanakkale', 'tesisat çanakkale', 'güneş enerjisi çanakkale', 'petek temizleme çanakkale', 'kombi servisi', 'doğalgaz tesisatı', 'yerden ısıtma'],
   authors: [{ name: 'Çelikler Teknik' }],
   creator: 'Çelikler Teknik',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Çelikler Teknik - Çanakkale Isıtma ve Tesisat Çözümleri',
-    description: 'Profesyonel doğalgaz, kombi, ısı pompası ve tesisat hizmetleri. 10+ yıl tecrübe, garantili işçilik.',
+    description: 'Profesyonel doğalgaz, kombi, ısı pompası ve tesisat hizmetleri. 20+ yıl tecrübe, garantili işçilik.',
     url: 'https://celiklerteknik.com',
     siteName: 'Çelikler Teknik',
     locale: 'tr_TR',

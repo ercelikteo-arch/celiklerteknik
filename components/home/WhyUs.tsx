@@ -3,7 +3,7 @@ import { FaAward, FaCertificate, FaShieldAlt, FaBolt, FaTag } from 'react-icons/
 const features = [
   {
     icon: FaAward,
-    title: '10+ Yıllık Tecrübe',
+    title: '20+ Yıllık Tecrübe',
     description: 'Sektörde uzun yıllara dayanan deneyim',
   },
   {

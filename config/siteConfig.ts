@@ -61,15 +61,15 @@ export const siteConfig = {
   // SEO
   seo: {
     title: 'Çelikler Teknik - Çanakkale Doğalgaz, Kombi, Isı Pompası Uzmanı',
-    description: 'Çanakkale genelinde doğalgaz tesisatı, kombi montajı, ısı pompası sistemleri, güneş enerji ve tesisat hizmetleri. 10+ yıllık tecrübe, garantili işçilik.',
+    description: 'Çanakkale genelinde doğalgaz tesisatı, kombi montajı, ısı pompası sistemleri, güneş enerji ve tesisat hizmetleri. 20+ yıllık tecrübe, garantili işçilik.',
     keywords: 'çanakkale doğalgaz, çanakkale kombi, ısı pompası çanakkale, tesisat çanakkale, güneş enerjisi',
     googleVerification: '', // Google Search Console verification code
   },
   
   // Firma İstatistikleri
   stats: {
-    experience: '10+',
-    projects: '500+',
+    experience: '20+',
+    projects: '1000+',
     satisfaction: '98',
   }
 }
