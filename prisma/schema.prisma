@@ -64,6 +64,30 @@ enum LeadStatus {
   CLOSED
 }
 
+// ==================== QUOTES (TEKLİF TALEPLERİ) ====================
+
+model Quote {
+  id          String      @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  district    String
+  service     String
+  message     String?
+  status      QuoteStatus @default(NEW)
+  notes       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum QuoteStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  CONVERTED
+  CLOSED
+}
+
 // ==================== APPOINTMENTS ====================
 
 model Appointment {

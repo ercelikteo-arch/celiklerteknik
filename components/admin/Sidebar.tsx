@@ -5,12 +5,13 @@ import { usePathname } from 'next/navigation'
 import { 
   FaHome, FaFileAlt, FaCalendarAlt, FaExclamationTriangle,
   FaBlog, FaBox, FaImages, FaStar, FaCog, FaMapMarkerAlt,
-  FaTools, FaSignOutAlt, FaBars, FaTimes
+  FaTools, FaSignOutAlt, FaBars, FaTimes, FaClipboardList
 } from 'react-icons/fa'
 import { useState } from 'react'
 
 const menuItems = [
   { href: '/admin', icon: FaHome, label: 'Dashboard' },
+  { href: '/admin/quotes', icon: FaClipboardList, label: 'Teklif Talepleri' },
   { href: '/admin/leads', icon: FaFileAlt, label: 'Chatbot Talepleri' },
   { href: '/admin/appointments', icon: FaCalendarAlt, label: 'Keşif Randevuları' },
   { href: '/admin/faults', icon: FaExclamationTriangle, label: 'Arıza Kayıtları' },
