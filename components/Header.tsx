@@ -22,21 +22,21 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
+      <nav className="container mx-auto px-4 py-3">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/images/logo.png"
               alt={siteConfig.companyName}
-              width={180}
-              height={60}
-              className="h-12 w-auto"
+              width={140}
+              height={45}
+              className="h-10 w-auto"
               priority
             />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center justify-end flex-1 space-x-5">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
@@ -58,7 +58,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-primary text-2xl"
+            className="lg:hidden text-primary text-2xl ml-auto"
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
