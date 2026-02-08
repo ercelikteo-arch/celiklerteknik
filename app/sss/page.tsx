@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import { FaChevronDown, FaPhone, FaWhatsapp } from 'react-icons/fa'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { siteConfig } from '@/config/siteConfig'
 import { FAQSchema } from '@/components/SchemaMarkup'
 
@@ -149,15 +147,14 @@ export default function SSSPage() {
   return (
     <>
       <FAQSchema faqs={allFaqs} />
-      <Header />
       <main className="pt-20">
         {/* Hero */}
-        <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-16">
+        <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Sıkça Sorulan Sorular
             </h1>
-            <p className="text-xl text-orange-100 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-2xl mx-auto">
               Merak ettiğiniz tüm soruların cevapları burada. Bulamadığınız bir şey varsa bize ulaşın.
             </p>
           </div>
@@ -168,7 +165,7 @@ export default function SSSPage() {
           <div className="container mx-auto px-4 max-w-4xl">
             {faqData.map((category, catIndex) => (
               <div key={catIndex} className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-orange-500">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-secondary">
                   {category.category}
                 </h2>
                 <div className="space-y-3">
@@ -186,7 +183,7 @@ export default function SSSPage() {
                         >
                           <span className="font-medium text-gray-800 pr-4">{item.q}</span>
                           <FaChevronDown 
-                            className={`text-orange-500 flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                            className={`text-secondary flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
                           />
                         </button>
                         <div 
@@ -217,7 +214,7 @@ export default function SSSPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`tel:${siteConfig.contact.phone.formatted.primary}`}
-                className="inline-flex items-center justify-center gap-2 bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-600 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
                 <FaPhone />
                 {siteConfig.contact.phone.primary}
@@ -235,7 +232,6 @@ export default function SSSPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

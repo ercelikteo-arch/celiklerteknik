@@ -295,7 +295,7 @@ export const generateProgrammaticContent = (district: typeof districts[0], servi
       <p>${district.uniqueContent}</p>
       
       <h2>${district.name}'de ${service.shortName} Hizmetlerimiz</h2>
-      <p>${district.name} ilçesinde ${district.population} nüfusa hizmet veren ekibimiz, ${service.name.toLowerCase()} konusunda 10 yılı aşkın tecrübeye sahiptir. Sertifikalı ustalarımız ile güvenli ve kaliteli hizmet garantisi sunuyoruz.</p>
+      <p>${district.name} ilçesinde ${district.population} nüfusa hizmet veren ekibimiz, ${service.name.toLowerCase()} konusunda 20 yılı aşkın tecrübeye sahiptir. Sertifikalı ustalarımız ile güvenli ve kaliteli hizmet garantisi sunuyoruz.</p>
       
       <h3>Servis Bilgisi</h3>
       <p>${district.serviceNote}</p>

@@ -38,7 +38,7 @@ export default function DogalgazTesisatiPage() {
             
             <p className="text-lg text-gray-700 mb-6">
               Çelikler Yapı olarak Çanakkale genelinde güvenli, standartlara uygun ve uzun ömürlü doğalgaz tesisatı kurulumu yapıyoruz. 
-              Sertifikalı ustalarımız ve 10 yılı aşkın tecrübemizle evinizde veya işyerinizde doğalgaz tesisatınızı en güvenli şekilde tamamlıyoruz.
+              Sertifikalı ustalarımız ve 20 yılı aşkın tecrübemizle evinizde veya işyerinizde doğalgaz tesisatınızı en güvenli şekilde tamamlıyoruz.
             </p>
 
             <p className="text-lg text-gray-700 mb-6">

@@ -9,7 +9,7 @@ export const districts: District[] = [
     name: 'Çanakkale Merkez',
     slug: 'canakkale-merkez',
     content: `
-      <p>Çanakkale Merkez'de 10 yılı aşkın tecrübemizle profesyonel tesisat, doğalgaz, kombi ve ısı pompası hizmetleri sunuyoruz. Sertifikalı ustalarımız ve garantili işçiliğimizle evinizde veya işyerinizde güvenli ve kaliteli hizmet sağlıyoruz.</p>
+      <p>Çanakkale Merkez'de 20 yılı aşkın tecrübemizle profesyonel tesisat, doğalgaz, kombi ve ısı pompası hizmetleri sunuyoruz. Sertifikalı ustalarımız ve garantili işçiliğimizle evinizde veya işyerinizde güvenli ve kaliteli hizmet sağlıyoruz.</p>
 
       <h3>Çanakkale Merkez'de Neden Bizi Tercih Etmelisiniz?</h3>
       <p>Çanakkale Merkez'in her mahallesine hızlı servis sağlıyoruz. Acil durumlarda aynı gün müdahale ediyoruz. TSE belgeli malzemeler kullanıyor, tüm işlerimizde 2 yıl garanti veriyoruz.</p>
@@ -60,7 +60,7 @@ export const districts: District[] = [
     name: 'Ezine',
     slug: 'ezine',
     content: `
-      <p>Ezine'de tesisat, doğalgaz, kombi ve ısı pompası hizmetlerinde 10 yıllık tecrübemizle yanınızdayız. Kaliteli hizmet, uygun fiyat.</p>
+      <p>Ezine'de tesisat, doğalgaz, kombi ve ısı pompası hizmetlerinde 20 yıllık tecrübemizle yanınızdayız. Kaliteli hizmet, uygun fiyat.</p>
 
       <h3>Ezine'de Güvenilir Tesisatçı</h3>
       <p>Ezine ilçesinde hem yeni bina projelerinde hem de mevcut binaların tesisat yenileme işlerinde deneyimliyiz. TSE belgeli malzemeler kullanıyoruz.</p>

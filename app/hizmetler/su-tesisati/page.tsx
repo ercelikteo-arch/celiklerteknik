@@ -52,7 +52,7 @@ export default function SuTesisatiPage() {
 
             <p className="text-lg text-gray-700 mb-6">
               Su tesisatı, evinizin en kritik altyapı sistemlerinden biridir. Yanlış yapılan tesisatlar su kaçağı, nem, küf ve ciddi maddi hasarlara yol açabilir. 
-              10 yılı aşkın tecrübemiz ve <strong>garantili işçiliğimizle</strong> güvenle çalışabilirsiniz.
+              20 yılı aşkın tecrübemiz ve <strong>garantili işçiliğimizle</strong> güvenle çalışabilirsiniz.
             </p>
 
             {/* Hizmet Türleri */}

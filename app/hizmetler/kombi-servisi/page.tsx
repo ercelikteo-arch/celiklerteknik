@@ -52,7 +52,7 @@ export default function KombiServisiPage() {
             
             <p className="text-lg text-gray-700 mb-6">
               Çelikler Yapı olarak Çanakkale ve çevresinde <strong>tüm marka kombilerde</strong> profesyonel servis hizmeti sunuyoruz. 
-              10 yılı aşkın tecrübemiz ve sertifikalı teknik ekibimizle kombi montajı, periyodik bakım ve arıza tamiri işlemlerini 
+              20 yılı aşkın tecrübemiz ve sertifikalı teknik ekibimizle kombi montajı, periyodik bakım ve arıza tamiri işlemlerini 
               en yüksek kalite standartlarında gerçekleştiriyoruz.
             </p>
 
