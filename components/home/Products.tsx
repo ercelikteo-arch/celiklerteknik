@@ -1,34 +1,30 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaShoppingCart } from 'react-icons/fa'
+import { prisma } from '@/lib/prisma'
 
-const products = [
-  {
-    name: 'Vaillant ecoTEC Plus Kombi',
-    description: 'Yoğuşmalı kombi, yüksek verim',
-    price: '15.500 TL',
-    image: '/images/products/kombi-1.jpg',
-  },
-  {
-    name: 'Daikin Altherma Isı Pompası',
-    description: 'Enerji tasarruflu ısıtma sistemi',
-    price: '85.000 TL',
-    image: '/images/products/isi-pompasi-1.jpg',
-  },
-  {
-    name: 'Viessmann Vitosol Güneş Paneli',
-    description: 'Yüksek verimli güneş kolektörü',
-    price: '12.000 TL',
-    image: '/images/products/gunes-panel-1.jpg',
-  },
-  {
-    name: 'Buderus Logamax Plus Kombi',
-    description: 'Sessiz çalışma, uzun ömür',
-    price: '18.500 TL',
-    image: '/images/products/kombi-2.jpg',
-  },
-]
+async function getFeaturedProducts() {
+  try {
+    const products = await prisma.product.findMany({
+      where: { featured: true, inStock: true },
+      take: 4,
+      orderBy: { createdAt: 'desc' }
+    })
+    return products
+  } catch (error) {
+    console.error('Error fetching products:', error)
+    return []
+  }
+}
 
-const Products = () => {
+const Products = async () => {
+  const products = await getFeaturedProducts()
+
+  // Eğer DB'de ürün yoksa bölümü gösterme
+  if (products.length === 0) {
+    return null
+  }
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -40,22 +36,38 @@ const Products = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product, index) => (
-            <div key={index} className="card group">
-              <div className="bg-neutral h-48 rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-gray-400">Ürün Görseli</span>
+          {products.map((product) => (
+            <Link key={product.id} href={`/urunler/${product.slug}`} className="card group hover:shadow-xl transition-shadow">
+              <div className="bg-neutral h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                {product.images && product.images.length > 0 ? (
+                  <Image
+                    src={product.images[0]}
+                    alt={product.name}
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <span className="text-gray-400">Ürün Görseli</span>
+                )}
               </div>
-              <h3 className="text-lg font-bold text-primary mb-2 font-display">
+              <h3 className="text-lg font-bold text-primary mb-2 font-display group-hover:text-secondary transition-colors">
                 {product.name}
               </h3>
-              <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.shortDescription}</p>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-primary">{product.price}</span>
-                <button className="bg-secondary text-white p-2 rounded-lg hover:bg-secondary-light transition-colors duration-300">
+                {product.price ? (
+                  <span className="text-2xl font-bold text-primary">
+                    {product.price.toLocaleString('tr-TR')} TL
+                  </span>
+                ) : (
+                  <span className="text-lg text-gray-500">Fiyat için arayın</span>
+                )}
+                <span className="bg-secondary text-white p-2 rounded-lg group-hover:bg-secondary-light transition-colors duration-300">
                   <FaShoppingCart size={20} />
-                </button>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
