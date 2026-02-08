@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 const menuItems = [
   { href: '/admin', icon: FaHome, label: 'Dashboard' },
-  { href: '/admin/leads', icon: FaFileAlt, label: 'Teklif Talepleri' },
+  { href: '/admin/leads', icon: FaFileAlt, label: 'Chatbot Talepleri' },
   { href: '/admin/appointments', icon: FaCalendarAlt, label: 'Keşif Randevuları' },
   { href: '/admin/faults', icon: FaExclamationTriangle, label: 'Arıza Kayıtları' },
   { href: '/admin/blog', icon: FaBlog, label: 'Blog Yönetimi' },

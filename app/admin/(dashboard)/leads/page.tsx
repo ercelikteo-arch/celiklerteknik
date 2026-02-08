@@ -15,7 +15,7 @@ export default async function LeadsPage() {
 
   return (
     <div>
-      <AdminHeader title="Teklif Talepleri" user={session!} />
+      <AdminHeader title="Chatbot Talepleri" user={session!} />
       <div className="p-6">
         <LeadsTable leads={leads} />
       </div>
