@@ -56,22 +56,53 @@ const Chatbot = () => {
     setStep(2)
   }
 
-  const handlePhoneSubmit = (phone: string) => {
+  const handlePhoneSubmit = async (phone: string) => {
     if (phone.length < 10) {
       alert('Lütfen geçerli bir telefon numarası girin')
       return
     }
 
-    setFormData({ ...formData, phone })
+    const updatedFormData = { ...formData, phone }
+    setFormData(updatedFormData)
     setMessages([
       ...messages,
       { text: phone, isBot: false },
-      { text: 'Teşekkürler! Bilgileriniz alındı. En kısa sürede size dönüş yapacağız. 📞', isBot: true },
+      { text: 'Bilgileriniz kaydediliyor...', isBot: true },
     ])
-    setStep(3)
 
-    // Form verisini kaydet (backend'e gönderilecek)
-    console.log('Chatbot Form:', formData)
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Chatbot Müşteri',
+          phone: phone,
+          district: updatedFormData.district,
+          service: updatedFormData.service,
+          message: `Chatbot üzerinden gelen talep`,
+        })
+      })
+
+      if (res.ok) {
+        setMessages(prev => [
+          ...prev.slice(0, -1),
+          { text: 'Teşekkürler! Bilgileriniz alındı. En kısa sürede size dönüş yapacağız. 📞', isBot: true },
+        ])
+      } else {
+        setMessages(prev => [
+          ...prev.slice(0, -1),
+          { text: 'Bir hata oluştu. Lütfen bizi arayın: 0532 782 89 58', isBot: true },
+        ])
+      }
+    } catch (err) {
+      console.error('Chatbot error:', err)
+      setMessages(prev => [
+        ...prev.slice(0, -1),
+        { text: 'Bir hata oluştu. Lütfen bizi arayın: 0532 782 89 58', isBot: true },
+      ])
+    }
+    
+    setStep(3)
   }
 
   const resetChat = () => {
