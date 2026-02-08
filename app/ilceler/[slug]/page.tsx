@@ -1,16 +1,31 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { FaPhone, FaCheckCircle } from 'react-icons/fa'
-import { districts } from '@/data/districts'
+import { prisma } from '@/lib/prisma'
 import DistrictCTA from '@/components/DistrictCTA'
 
+async function getDistrict(slug: string) {
+  return prisma.district.findUnique({
+    where: { slug, active: true }
+  })
+}
+
+async function getAllDistricts() {
+  return prisma.district.findMany({
+    where: { active: true },
+    select: { slug: true }
+  })
+}
+
 export async function generateStaticParams() {
+  const districts = await getAllDistricts()
   return districts.map((district) => ({
     slug: district.slug,
   }))
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const district = districts.find((d) => d.slug === params.slug)
+  const district = await getDistrict(params.slug)
   
   if (!district) {
     return {
@@ -19,27 +34,25 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${district.name} Tesisatçı - Doğalgaz, Kombi, Isı Pompası | Çelikler Yapı`,
+    title: `${district.name} Tesisatçı - Doğalgaz, Kombi, Isı Pompası | Çelikler Teknik`,
     description: `${district.name} ve çevresinde profesyonel tesisat, doğalgaz, kombi ve ısı pompası hizmetleri. Hızlı servis, uygun fiyat, garantili işçilik.`,
     keywords: `${district.name} tesisatçı, ${district.name} doğalgaz, ${district.name} kombi, ${district.name} ısı pompası`,
   }
 }
 
-export default function DistrictPage({ params }: { params: { slug: string } }) {
-  const district = districts.find((d) => d.slug === params.slug)
+export default async function DistrictPage({ params }: { params: { slug: string } }) {
+  const district = await getDistrict(params.slug)
 
   if (!district) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-primary mb-4">İlçe bulunamadı</h1>
-          <Link href="/" className="text-secondary hover:underline">
-            Ana sayfaya dön
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
+
+  // Varsayılan içerik oluştur
+  const defaultContent = `
+    <p><strong>${district.name}</strong> ve çevresinde 20 yılı aşkın tecrübemizle profesyonel tesisat hizmetleri sunuyoruz.</p>
+    <p>Doğalgaz tesisatı, kombi montajı ve servisi, ısı pompası sistemleri, su tesisatı ve petek temizliği konularında uzman ekibimizle yanınızdayız.</p>
+    ${district.serviceNote ? `<p><em>${district.serviceNote}</em></p>` : ''}
+  `
 
   return (
     <div className="min-h-screen">
@@ -51,13 +64,19 @@ export default function DistrictPage({ params }: { params: { slug: string } }) {
           <p className="text-xl text-gray-200">
             Profesyonel tesisat, doğalgaz, kombi ve ısı pompası hizmetleri
           </p>
+          {district.population && (
+            <p className="text-sm text-gray-300 mt-2">Nüfus: {district.population}</p>
+          )}
         </div>
       </section>
 
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div dangerouslySetInnerHTML={{ __html: district.content }} className="prose prose-lg max-w-none mb-8" />
+            <div 
+              dangerouslySetInnerHTML={{ __html: district.uniqueContent || defaultContent }} 
+              className="prose prose-lg max-w-none mb-8" 
+            />
 
             <h2 className="text-3xl font-bold text-primary mb-6 font-display">
               {district.name}'de Sunduğumuz Hizmetler
@@ -132,3 +151,7 @@ export default function DistrictPage({ params }: { params: { slug: string } }) {
     </div>
   )
 }
+
+// Dinamik sayfa olarak işaretle - yeni ilçeler için
+export const dynamic = 'force-dynamic'
+export const revalidate = 60 // 60 saniyede bir yeniden oluştur
