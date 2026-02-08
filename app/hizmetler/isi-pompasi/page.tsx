@@ -1,14 +1,24 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone } from 'react-icons/fa'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata = {
-  title: 'Isı Pompası Sistemleri Çanakkale | Çelikler Yapı',
-  description: 'Enerji tasarruflu ısı pompası sistemleri. Hava kaynaklı ve toprak kaynaklı ısı pompaları. Çanakkale genelinde profesyonel kurulum.',
-  keywords: 'ısı pompası çanakkale, ısı pompası fiyatları, enerji tasarrufu',
+  title: 'Isı Pompası Çanakkale | Kurulum, Montaj, Servis | Çelikler Teknik',
+  description: 'Çanakkale ısı pompası kurulumu ve servisi. Hava kaynaklı ısı pompası, %70 enerji tasarrufu. Daikin, Mitsubishi yetkili servis. Ücretsiz keşif.',
+  keywords: 'ısı pompası çanakkale, çanakkale ısı pompası, ısı pompası kurulumu, ısı pompası fiyatları, hava kaynaklı ısı pompası, ısı pompası montajı',
+  alternates: {
+    canonical: 'https://celiklerteknik.com/hizmetler/isi-pompasi',
+  },
 }
 
 export default function IsiPompasiPage() {
   return (
+    <>
+      <ServiceSchema 
+        name="Isı Pompası Kurulumu Çanakkale"
+        description="Çanakkale'de profesyonel ısı pompası kurulumu, montajı ve servisi. Hava kaynaklı ve toprak kaynaklı sistemler. %70 enerji tasarrufu."
+        url="https://celiklerteknik.com/hizmetler/isi-pompasi"
+      />
     <div className="min-h-screen">
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
@@ -190,5 +200,6 @@ export default function IsiPompasiPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

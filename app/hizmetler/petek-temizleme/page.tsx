@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaThermometerHalf, FaLeaf, FaMoneyBillWave } from 'react-icons/fa'
 import { Metadata } from 'next'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata: Metadata = {
   title: 'Petek Temizleme Çanakkale | Radyatör Temizliği | Çelikler Yapı',
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
 export default function PetekTemizlemePage() {
   return (
     <div className="min-h-screen">
+      <ServiceSchema 
+        name="Petek Temizleme Çanakkale"
+        description="Çanakkale petek temizleme hizmeti. Profesyonel radyatör temizliği, kombi petek yıkama. %30 enerji tasarrufu. Aynı gün servis, garantili işçilik."
+        url="https://celiklerteknik.com/hizmetler/petek-temizleme"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">

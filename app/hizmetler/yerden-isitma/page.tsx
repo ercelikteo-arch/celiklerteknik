@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaHome, FaThermometerHalf, FaLeaf, FaChild } from 'react-icons/fa'
 import { Metadata } from 'next'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata: Metadata = {
   title: 'Yerden Isıtma Sistemleri Çanakkale | Çelikler Yapı',
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
 export default function YerdenIsitmaPage() {
   return (
     <div className="min-h-screen">
+      <ServiceSchema 
+        name="Yerden Isıtma Sistemleri Çanakkale"
+        description="Çanakkale yerden ısıtma sistemi kurulumu. Sıcak su ve elektrikli yerden ısıtma. Konforlu, ekonomik ve sağlıklı ısınma. Ücretsiz keşif ve proje."
+        url="https://celiklerteknik.com/hizmetler/yerden-isitma"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">

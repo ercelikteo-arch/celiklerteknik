@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaTint, FaWrench, FaShower, FaToilet } from 'react-icons/fa'
 import { Metadata } from 'next'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata: Metadata = {
   title: 'Su Tesisatı Çanakkale | Sıhhi Tesisat | Çelikler Yapı',
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
 export default function SuTesisatiPage() {
   return (
     <div className="min-h-screen">
+      <ServiceSchema 
+        name="Su Tesisatı Çanakkale"
+        description="Çanakkale su tesisatı hizmetleri. Temiz su, pis su, yağmur suyu tesisatı. Su kaçağı tespiti ve tamiri. Banyo, mutfak tesisatı. 7/24 acil servis."
+        url="https://celiklerteknik.com/hizmetler/su-tesisati"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">

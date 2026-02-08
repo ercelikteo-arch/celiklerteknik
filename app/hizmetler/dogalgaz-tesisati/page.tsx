@@ -1,14 +1,24 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone } from 'react-icons/fa'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata = {
-  title: 'Doğalgaz Tesisatı Çanakkale | Çelikler Yapı',
-  description: 'Çanakkale genelinde güvenli ve standartlara uygun doğalgaz tesisatı kurulumu. Sertifikalı ustalar, garantili işçilik. Hemen teklif alın.',
-  keywords: 'doğalgaz tesisatı çanakkale, doğalgaz kurulumu, gaz tesisatı',
+  title: 'Doğalgaz Tesisatı Çanakkale | Proje, Kurulum, Onay | Çelikler Teknik',
+  description: 'Çanakkale doğalgaz tesisatı kurulumu. TSE belgeli, sertifikalı ustalar. Proje çizimi, tesisat, sayaç montajı. Ücretsiz keşif ve teklif.',
+  keywords: 'doğalgaz tesisatı çanakkale, çanakkale doğalgaz, doğalgaz kurulumu, gaz tesisatı, doğalgaz projesi, doğalgaz aboneliği',
+  alternates: {
+    canonical: 'https://celiklerteknik.com/hizmetler/dogalgaz-tesisati',
+  },
 }
 
 export default function DogalgazTesisatiPage() {
   return (
+    <>
+      <ServiceSchema 
+        name="Doğalgaz Tesisatı Çanakkale"
+        description="Çanakkale'de profesyonel doğalgaz tesisatı kurulumu. TSE belgeli malzeme, sertifikalı ustalar, garantili işçilik."
+        url="https://celiklerteknik.com/hizmetler/dogalgaz-tesisati"
+      />
     <div className="min-h-screen">
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
@@ -163,5 +173,6 @@ export default function DogalgazTesisatiPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

@@ -5,6 +5,7 @@ import { FaChevronDown, FaPhone, FaWhatsapp } from 'react-icons/fa'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { siteConfig } from '@/config/siteConfig'
+import { FAQSchema } from '@/components/SchemaMarkup'
 
 const faqData = [
   {
@@ -140,8 +141,14 @@ export default function SSSPage() {
     )
   }
 
+  // FAQ Schema için tüm soruları düzleştir
+  const allFaqs = faqData.flatMap(cat => 
+    cat.questions.map(q => ({ question: q.q, answer: q.a }))
+  )
+
   return (
     <>
+      <FAQSchema faqs={allFaqs} />
       <Header />
       <main className="pt-20">
         {/* Hero */}

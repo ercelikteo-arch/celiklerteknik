@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaTools, FaShieldAlt, FaClock, FaAward } from 'react-icons/fa'
 import { Metadata } from 'next'
+import { ServiceSchema } from '@/components/SchemaMarkup'
 
 export const metadata: Metadata = {
-  title: 'Kombi Servisi Çanakkale | Montaj, Bakım, Tamir | Çelikler Yapı',
+  title: 'Kombi Servisi Çanakkale | Montaj, Bakım, Tamir | Çelikler Teknik',
   description: 'Çanakkale kombi servisi. Tüm markalarda kombi montajı, bakımı ve tamiri. Vaillant, Baymak, Demirdöküm, Bosch yetkili servis kalitesinde hizmet. 7/24 acil servis.',
-  keywords: 'kombi servisi çanakkale, kombi tamiri, kombi bakımı, kombi montajı, vaillant servis, baymak servis, demirdöküm servis',
+  keywords: 'kombi servisi çanakkale, çanakkale kombi servisi, kombi tamiri, kombi bakımı, kombi montajı, vaillant servis çanakkale, baymak servis, demirdöküm servis',
   alternates: {
     canonical: 'https://celiklerteknik.com/hizmetler/kombi-servisi',
   },
@@ -24,6 +25,11 @@ const brands = [
 export default function KombiServisiPage() {
   return (
     <div className="min-h-screen">
+      <ServiceSchema 
+        name="Kombi Servisi Çanakkale"
+        description="Çanakkale kombi servisi. Tüm markalarda kombi montajı, bakımı ve tamiri. Vaillant, Baymak, Demirdöküm, Bosch yetkili servis kalitesinde hizmet. 7/24 acil servis."
+        url="https://celiklerteknik.com/hizmetler/kombi-servisi"
+      />
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
