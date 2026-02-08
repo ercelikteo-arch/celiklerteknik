@@ -15,8 +15,8 @@ export const siteConfig = {
       }
     },
     whatsapp: {
-      number: '0532 473 9862',
-      formatted: '+905324739862',
+      number: '0532 782 89 58',
+      formatted: '+905327828958',
     },
     email: 'info@celiklerteknik.com',
     addresses: {
