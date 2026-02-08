@@ -15,11 +15,8 @@ const Header = () => {
     { name: 'Ürünler', href: '/urunler' },
     { name: 'Referanslar', href: '/referanslar' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Müşteri Yorumları', href: '/yorumlar' },
-    { name: 'SSS', href: '/sss' },
+    { name: 'Yorumlar', href: '/yorumlar' },
     { name: 'Teklif Al', href: '/teklif-al' },
-    { name: 'Keşif Randevu', href: '/kesif-randevu' },
-    { name: 'Arıza Kaydı', href: '/ariza-kaydi' },
     { name: 'İletişim', href: '/iletisim' },
   ]
 
