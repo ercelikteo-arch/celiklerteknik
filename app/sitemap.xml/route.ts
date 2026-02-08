@@ -1,35 +1,19 @@
 import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
 
 const baseUrl = 'https://celiklerteknik.com'
 
-// İlçeler
-const districts = [
-  'canakkale-merkez', 'biga', 'gelibolu', 'ezine', 'lapseki', 'can',
-  'ayvacik', 'bayramic', 'eceabat', 'bozcaada', 'gokceada', 'yenice'
-]
-
-// Hizmetler
-const services = [
-  'dogalgaz-tesisati', 'kombi-servisi', 'isi-pompasi', 
-  'gunes-enerjisi', 'su-tesisati', 'petek-temizleme', 'yerden-isitma'
-]
-
-// Blog yazıları
-const blogSlugs = [
-  'isi-pompasi-nedir', 'kombi-mi-isi-pompasi-mi', 'petek-temizligi-ne-zaman-yapilmali',
-  'dogalgaz-tesisati-dikkat-edilmesi-gerekenler', 'yerden-isitma-mi-petek-mi',
-  'gunes-enerjisi-avantajlari', 'kombi-bakimi-ne-zaman', 'tesisatci-secerken-dikkat',
-  'enerji-tasarrufu-yontemleri', 'isi-kaybi-hesaplama'
-]
-
-// Longtail SEO sayfaları
-const longtailPages = [
-  'kombi-neden-su-akitir', 'petek-neden-isinmaz', 'kombi-basinc-dusuyor',
-  'isi-pompasi-elektrik-tuketimi', 'kombi-ariza-kodlari', 'petek-temizligi-fiyatlari'
-]
-
-function generateSitemapXml() {
+async function generateSitemapXml() {
   const today = new Date().toISOString().split('T')[0]
+  
+  // Veritabanından dinamik veriler çek
+  const [districts, services, blogPosts, products, references] = await Promise.all([
+    prisma.district.findMany({ select: { slug: true } }),
+    prisma.service.findMany({ select: { slug: true } }),
+    prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+    prisma.product.findMany({ select: { slug: true } }),
+    prisma.reference.findMany({ where: { published: true }, select: { slug: true } }),
+  ])
   
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -88,62 +72,74 @@ function generateSitemapXml() {
     <priority>0.7</priority>
   </url>`
 
-  // Hizmet sayfaları
-  services.forEach(service => {
+  // Hizmet sayfaları (DB'den)
+  for (const service of services) {
     xml += `
   <url>
-    <loc>${baseUrl}/hizmetler/${service}</loc>
+    <loc>${baseUrl}/hizmetler/${service.slug}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`
-  })
+  }
 
-  // İlçe sayfaları
-  districts.forEach(district => {
+  // İlçe sayfaları (DB'den)
+  for (const district of districts) {
     xml += `
   <url>
-    <loc>${baseUrl}/ilceler/${district}</loc>
+    <loc>${baseUrl}/ilceler/${district.slug}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
-  })
+  }
 
-  // Blog sayfaları
-  blogSlugs.forEach(slug => {
+  // Blog sayfaları (DB'den - sadece yayınlananlar)
+  for (const post of blogPosts) {
+    const lastmod = post.updatedAt ? post.updatedAt.toISOString().split('T')[0] : today
     xml += `
   <url>
-    <loc>${baseUrl}/blog/${slug}</loc>
+    <loc>${baseUrl}/blog/${post.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`
+  }
+
+  // Ürün sayfaları (DB'den)
+  for (const product of products) {
+    xml += `
+  <url>
+    <loc>${baseUrl}/urunler/${product.slug}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>`
-  })
+  }
 
-  // Programmatic SEO sayfaları (İlçe + Hizmet)
-  districts.forEach(district => {
-    services.forEach(service => {
-      xml += `
-  <url>
-    <loc>${baseUrl}/hizmet/${district}-${service}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`
-    })
-  })
-
-  // Longtail SEO sayfaları
-  longtailPages.forEach(page => {
+  // Referans sayfaları (DB'den)
+  for (const ref of references) {
     xml += `
   <url>
-    <loc>${baseUrl}/rehber/${page}</loc>
+    <loc>${baseUrl}/referanslar/${ref.slug}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>`
-  })
+  }
+
+  // Programmatic SEO sayfaları (İlçe + Hizmet kombinasyonları)
+  for (const district of districts) {
+    for (const service of services) {
+      xml += `
+  <url>
+    <loc>${baseUrl}/hizmet/${district.slug}-${service.slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`
+    }
+  }
 
   xml += `
 </urlset>`
@@ -152,11 +148,17 @@ function generateSitemapXml() {
 }
 
 export async function GET() {
-  const sitemap = generateSitemapXml()
-  
-  return new NextResponse(sitemap, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  })
+  try {
+    const sitemap = await generateSitemapXml()
+    
+    return new NextResponse(sitemap, {
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      },
+    })
+  } catch (error) {
+    console.error('Sitemap generation error:', error)
+    return new NextResponse('Error generating sitemap', { status: 500 })
+  }
 }
