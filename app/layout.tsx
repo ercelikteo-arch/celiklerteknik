@@ -90,9 +90,7 @@ export default function RootLayout({
         <meta name="geo.region" content="TR-17" />
         <meta name="geo.placename" content="Çanakkale" />
         {/* Google Search Console Verification */}
-        {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
-          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION} />
-        )}
+        <meta name="google-site-verification" content="rkbeSq14WVXEmD0GfRhOFOq1f4eCjHva3D-WQwJmfGk" />
         {/* DNS Prefetch for external resources */}
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
