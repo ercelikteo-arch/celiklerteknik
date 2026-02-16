@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FaCalendar, FaClock } from 'react-icons/fa'
+import { trackFormSubmit } from '@/lib/analytics'
 
 export default function KesifRandevuPage() {
   const [formData, setFormData] = useState({
@@ -70,6 +71,10 @@ export default function KesifRandevuPage() {
       }
 
       setSubmitted(true)
+      
+      // Google Analytics event tracking
+      trackFormSubmit('kesif_randevu')
+      
       setFormData({
         name: '',
         phone: '',

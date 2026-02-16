@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { trackFormSubmit } from '@/lib/analytics'
 
 export default function ArizaKaydiPage() {
   const [formData, setFormData] = useState({
@@ -47,6 +48,10 @@ export default function ArizaKaydiPage() {
       }
 
       setSubmitted(true)
+      
+      // Google Analytics event tracking
+      trackFormSubmit('ariza_kaydi')
+      
       setFormData({ name: '', phone: '', service: '', description: '' })
       
       // 5 saniye sonra mesajı kapat

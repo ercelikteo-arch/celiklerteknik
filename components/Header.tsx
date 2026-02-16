@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { FaBars, FaTimes, FaPhone } from 'react-icons/fa'
 import { siteConfig } from '@/config/siteConfig'
+import { trackPhoneClick } from '@/lib/analytics'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -45,6 +46,7 @@ const Header = () => {
           {/* Call Button */}
           <a
             href={`tel:${siteConfig.contact.phone.formatted.primary}`}
+            onClick={() => trackPhoneClick('header_phone')}
             className="hidden lg:flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-all duration-300 text-sm ml-auto"
           >
             <FaPhone />
