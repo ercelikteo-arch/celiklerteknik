@@ -5,6 +5,7 @@ import { FaPhone, FaWhatsapp, FaCalendarAlt, FaCheckCircle } from 'react-icons/f
 import { prisma } from '@/lib/prisma'
 import { siteConfig } from '@/config/siteConfig'
 import Breadcrumb from '@/components/Breadcrumb'
+import { ProductSchema } from '@/components/SchemaMarkup'
 
 interface Props {
   params: { slug: string }
@@ -44,6 +45,15 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-neutral">
+      {/* Product Schema */}
+      <ProductSchema
+        name={product.name}
+        description={product.shortDescription}
+        image={product.images?.[0] || ''}
+        price={product.price?.toString() || '0'}
+        brand={product.category}
+      />
+      
       <Breadcrumb items={breadcrumbItems} />
 
       <div className="container mx-auto px-4 py-8">

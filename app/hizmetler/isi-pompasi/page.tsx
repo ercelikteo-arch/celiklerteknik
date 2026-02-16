@@ -209,6 +209,16 @@ export default function IsiPompasiPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <div className="mt-8 p-6 bg-gray-50 rounded-xl">
+              <h3 className="text-xl font-bold text-primary mb-4 font-display">İlgili Blog Yazıları</h3>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/blog" className="text-secondary hover:underline">→ Isı Pompası Rehberi</Link>
+                <Link href="/kombi-mi-isi-pompasi-mi" className="text-secondary hover:underline">→ Kombi mi Isı Pompası mı?</Link>
+                <Link href="/mustakil-ev-isi-pompasi" className="text-secondary hover:underline">→ Müstakil Ev İçin Isı Pompası</Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
