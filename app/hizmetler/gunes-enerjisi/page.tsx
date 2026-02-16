@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaSun, FaLeaf, FaMoneyBillWave, FaShower, FaThermometerHalf, FaTools } from 'react-icons/fa'
 import { Metadata } from 'next'
 import PricingInfoBox from '@/components/PricingInfoBox'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata: Metadata = {
   title: 'Vakum Tüplü Güneş Enerjisi Çanakkale | Sıcak Su Sistemi | Çelikler Teknik',
@@ -292,6 +293,9 @@ export default function GunesEnerjisiPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="gunes-enerjisi" />
           </div>
         </div>
       </section>

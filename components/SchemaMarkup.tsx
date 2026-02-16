@@ -250,40 +250,97 @@ export const BreadcrumbSchema = ({
   )
 }
 
-// Product Schema
+// Product Schema - Google Rich Results uyumlu
 export const ProductSchema = ({
   name,
   description,
   image,
+  images,
   price,
-  brand
+  brand,
+  sku,
+  inStock = true,
+  rating,
+  reviewCount,
+  url
 }: {
   name: string
   description: string
   image: string
-  price: string
+  images?: string[]
+  price: number | null
   brand: string
+  sku?: string
+  inStock?: boolean
+  rating?: number
+  reviewCount?: number
+  url: string
 }) => {
-  const schema = {
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name,
     description,
-    image,
+    image: images && images.length > 0 ? images : image,
     brand: {
       '@type': 'Brand',
       name: brand
     },
+    sku: sku || name.toLowerCase().replace(/\s+/g, '-'),
+    mpn: sku || name.toLowerCase().replace(/\s+/g, '-'),
     offers: {
       '@type': 'Offer',
-      price,
+      url,
+      price: price || 0,
       priceCurrency: 'TRY',
-      availability: 'https://schema.org/InStock',
+      availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
       seller: {
         '@type': 'Organization',
         name: COMPANY_NAME
-      }
+      },
+      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
     }
+  }
+
+  // AggregateRating ekle (varsa)
+  if (rating && reviewCount) {
+    schema.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: rating,
+      reviewCount: reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    }
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// Blog FAQ Schema - Google Rich Results uyumlu
+export const BlogFAQSchema = ({ 
+  faqs 
+}: { 
+  faqs: { question: string; answer: string }[] 
+}) => {
+  if (!faqs || faqs.length < 3) return null
+  
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
   }
 
   return (

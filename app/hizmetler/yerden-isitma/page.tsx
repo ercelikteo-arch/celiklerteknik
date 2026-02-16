@@ -3,6 +3,7 @@ import { FaCheckCircle, FaPhone, FaHome, FaThermometerHalf, FaLeaf, FaChild } fr
 import { Metadata } from 'next'
 import { ServiceSchema } from '@/components/SchemaMarkup'
 import PricingInfoBox from '@/components/PricingInfoBox'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata: Metadata = {
   title: 'Yerden Isıtma Sistemleri Çanakkale | Çelikler Yapı',
@@ -296,6 +297,9 @@ export default function YerdenIsitmaPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="yerden-isitma" />
           </div>
         </div>
       </section>

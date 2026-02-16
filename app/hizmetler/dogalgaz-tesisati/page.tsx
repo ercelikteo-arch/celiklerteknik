@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone } from 'react-icons/fa'
 import { ServiceSchema } from '@/components/SchemaMarkup'
 import PricingInfoBox from '@/components/PricingInfoBox'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata = {
   title: 'Doğalgaz Tesisatı Çanakkale | Proje, Kurulum, Onay | Çelikler Teknik',
@@ -182,6 +183,9 @@ export default function DogalgazTesisatiPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="dogalgaz-tesisati" />
           </div>
         </div>
       </section>

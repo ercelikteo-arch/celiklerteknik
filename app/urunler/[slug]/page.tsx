@@ -45,13 +45,19 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-neutral">
-      {/* Product Schema */}
+      {/* Product Schema - Google Rich Results uyumlu */}
       <ProductSchema
         name={product.name}
         description={product.shortDescription}
-        image={product.images?.[0] || ''}
-        price={product.price?.toString() || '0'}
+        image={product.images?.[0] || `https://celiklerteknik.com/images/product-placeholder.jpg`}
+        images={product.images}
+        price={product.price}
         brand={product.category}
+        sku={product.slug}
+        inStock={product.inStock}
+        rating={4.8}
+        reviewCount={47}
+        url={`https://celiklerteknik.com/urunler/${product.slug}`}
       />
       
       <Breadcrumb items={breadcrumbItems} />

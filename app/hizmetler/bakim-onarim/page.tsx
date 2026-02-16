@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaTools, FaClock, FaShieldAlt, FaCalendarCheck } from 'react-icons/fa'
 import { Metadata } from 'next'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata: Metadata = {
   title: 'Bakım ve Onarım Hizmetleri Çanakkale | Çelikler Yapı',
@@ -313,6 +314,9 @@ export default function BakimOnarimPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="bakim-onarim" />
           </div>
         </div>
       </section>

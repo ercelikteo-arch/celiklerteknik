@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaThermometerHalf, FaLeaf, FaMoneyBillWave } from 'react-icons/fa'
 import { Metadata } from 'next'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata: Metadata = {
   title: 'Petek Temizleme Çanakkale | Radyatör Temizliği | Çelikler Yapı',
@@ -259,6 +260,9 @@ export default function PetekTemizlemePage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="petek-temizleme" />
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FaCheckCircle, FaPhone, FaTint, FaWrench, FaShower, FaToilet } from 'react-icons/fa'
 import { Metadata } from 'next'
 import { ServiceSchema } from '@/components/SchemaMarkup'
+import RelatedBlogLinks from '@/components/RelatedBlogLinks'
 
 export const metadata: Metadata = {
   title: 'Su Tesisatı Çanakkale | Sıhhi Tesisat | Çelikler Yapı',
@@ -250,6 +251,9 @@ export default function SuTesisatiPage() {
                 </a>
               </div>
             </div>
+
+            {/* İlgili Blog Yazıları */}
+            <RelatedBlogLinks service="su-tesisati" />
           </div>
         </div>
       </section>
